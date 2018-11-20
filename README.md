@@ -8,7 +8,7 @@ The purpose of this project is to create a database for the Fall 2018 semester f
 [Flight delays dataset](https://www.kaggle.com/usdot/flight-delays/home)
 
 ## Data Model
-(https://github.com/ltsheridan/flightdelays/blob/master/static/img/flights.png)
+<img width="590" alt="flights" src="https://user-images.githubusercontent.com/31678807/48745059-df638d80-ec37-11e8-8eaf-b598e43f62f7.png">
 
 ## Package Dependencies
 Will add later
