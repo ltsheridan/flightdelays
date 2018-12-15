@@ -1,0 +1,32 @@
+{% extends 'flightdelays/base.html' %}
+
+{% block content %}
+
+<article>
+  <header>
+  <div class="row">
+    <div class="col-sm-11">
+      <h2>Flights</h2>
+    </div>
+  </div>
+</header>
+
+{% include 'flightdelays/pagination.html' %}
+  <!-- WARNING: there is no missing code between <nav>...</nav> -->
+  {% if flights %}
+  <ul>
+    {% for flight in flights %}
+
+    <!-- safe filter on for raw HTML stored in database -->
+    <li><a href="{% url 'flight_detail' flight.pk %}">{{ flight.flight_number | safe }}</a></li>
+    {% endfor %}
+
+  </ul>
+  {% else %}
+  <p>No Flights are available to view.</p>
+  {% endif %}
+
+  <p>page count: {{ flights.count }}</p>
+</article>
+
+{% endblock content %}}
