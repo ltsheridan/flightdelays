@@ -2,7 +2,12 @@
 
 
    {% block content %}
+   {% if user.is_authenticated %}
 
+   {% else %}
+    <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
+  {% endif %}
+  
      {% if flight_detail.flight_number %}
     <div class="row">
       <div class="col-sm-2">

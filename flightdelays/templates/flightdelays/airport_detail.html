@@ -10,13 +10,24 @@
        </div>
      </header>
 
-     {% if aiport_detail.airport_name %}
+     {% if airport_detail.airport_name %}
     <div class="row">
       <div class="col-sm-2">
-        <p>Flight Detail</p>
+        <p>Airport</p>
       </div>
       <div class="col-sm-10">
         <p>{{airport_detail.airport_name}}</p>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if airport_detail.iata_code %}
+    <div class="row">
+      <div class="col-sm-2">
+        <p>IATA Code</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{ airport_detail.iata_code}}</p>
       </div>
     </div>
   {% endif %}
@@ -32,5 +43,49 @@
     </div>
   {% endif %}
 
+  {% if airport_detail.state %}
+    <div class="row">
+      <div class="col-sm-2">
+        <p>State</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{ airport_detail.state}}</p>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if airport_detail.latitude %}
+    <div class="row">
+      <div class="col-sm-2">
+        <p>Latitude</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{ airport_detail.latitude}}</p>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if airport_detail.longitude %}
+    <div class="row">
+      <div class="col-sm-2">
+        <p>Longitude</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{ airport_detail.longitude}}</p>
+      </div>
+    </div>
+  {% endif %}
+
+
+  <!-- {% if airport_detail.airline.flight_number %}
+    <div class="row">
+      <div class="col-sm-2">
+        <p>Longitude</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{ airport_detail.airline.flight_number}}</p>
+      </div>
+    </div>
+  {% endif %} -->
 
    {% endblock content %}

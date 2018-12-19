@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from .models import Flight, Airport, Airline, Aircraft
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 def index(request):
@@ -13,22 +15,37 @@ class AboutPageView(generic.TemplateView):
 class HomePageView(generic.TemplateView):
 	template_name = 'flightdelays/home.html'
 
-
+@method_decorator(login_required, name='dispatch')
 class FlightListView(generic.ListView):
 	model = Airport
 	context_object_name = 'airports'
 	template_name = 'flightdelays/flights.html'
 	paginate_by = 50
 
-	def get_queryset(self):
-		return Airport.objects.all()
+	def dispatch(self, *args, **kwargs):
+		return super().dispatch(*args, **kwargs)
 
+	def get_queryset(self):
+		return Airport.objects.all().order_by('airport_name')
+
+@method_decorator(login_required, name='dispatch')
 class AirportDetailView(generic.DetailView):
 	model = Airport
 	context_object_name = 'airport_detail'
 	template_name = 'flightdelays/airport_detail.html'
 
-class FlightDetailView(generic.ListView):
+	def dispatch(self, *args, **kwargs):
+		return super().dispatch(*args, **kwargs)
+
+# class FlightListView(generic.ListView):
+# 	model = Airport
+# 	context_object_name = 'airports'
+# 	template_name = 'flightdelays/flights.html'
+
+class FlightDetailView(generic.DetailView):
 	model = Flight
 	context_object_name = 'flight_detail'
 	template_name = 'flightdelays/flight_detail.html'
+    #
+	# def get_queryset(self):
+	# 	return Flight.objects.all()
