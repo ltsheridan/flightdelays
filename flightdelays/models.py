@@ -18,6 +18,8 @@ class Airline(models.Model):
     iata_code = models.CharField(unique=True, max_length=3)
     airline_name = models.CharField(unique=True, max_length=100)
 
+    # airport = models.ManyToManyField(Airport, through='Flight')
+
     class Meta:
         managed = False
         db_table = 'airline'
@@ -55,10 +57,10 @@ class Flight(models.Model):
     time_month = models.IntegerField()
     time_day = models.IntegerField()
     day_of_week = models.IntegerField()
-    airline = models.ForeignKey(Airline, models.DO_NOTHING, blank=True, null=True)
+    airline = models.ForeignKey('Airline', models.DO_NOTHING)
     #aircraft = models.ForeignKey(Aircraft, models.DO_NOTHING, blank=True, null=True)
-    #airport = models.ForeignKey(Airport, on_delete=models.PROTECT, null=False, related_name='origin')
-    airport = models.ForeignKey(Airport, on_delete=models.PROTECT, null=False)
+    # airport = models.ForeignKey(Airport, on_delete=models.PROTECT, null=False, related_name='origin')
+    airport = models.ForeignKey('Airport', models.DO_NOTHING)
     flight_number = models.IntegerField()
     scheduled_departure = models.IntegerField()
     departure_time = models.CharField(max_length=50)

@@ -6,27 +6,25 @@
   <header>
   <div class="row">
     <div class="col-sm-11">
-      <h2>Flights</h2>
+      <h2>Airports</h2>
     </div>
   </div>
 </header>
 
 {% include 'flightdelays/pagination.html' %}
-  <!-- WARNING: there is no missing code between <nav>...</nav> -->
-  {% if flights %}
+  {% if airports %}
   <ul>
-    {% for flight in flights %}
+    {% for airport in airports %}
 
-    <!-- safe filter on for raw HTML stored in database -->
-    <li><a href="{% url 'flight_detail' flight.pk %}">{{ flight.flight_number | safe }}</a></li>
+    <li><a href="{% url 'flight_detail' airport.pk %}">{{ airport.airport_name | safe }}</a></li>
     {% endfor %}
 
   </ul>
   {% else %}
-  <p>No Flights are available to view.</p>
+  <p>No airports are available to view.</p>
   {% endif %}
 
-  <p>page count: {{ flights.count }}</p>
+  <p>Page count: {{ airports.count }}</p>
 </article>
 
 {% endblock content %}}

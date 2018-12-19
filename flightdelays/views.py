@@ -15,13 +15,20 @@ class HomePageView(generic.TemplateView):
 
 
 class FlightListView(generic.ListView):
-	model = Flight
-	context_object_name = 'flights'
+	model = Airport
+	context_object_name = 'airports'
 	template_name = 'flightdelays/flights.html'
 	paginate_by = 50
 
+	def get_queryset(self):
+		return Airport.objects.all()
 
-class FlightDetailView(generic.DetailView):
+class AirportDetailView(generic.DetailView):
+	model = Airport
+	context_object_name = 'airport_detail'
+	template_name = 'flightdelays/airport_detail.html'
+
+class FlightDetailView(generic.ListView):
 	model = Flight
-	context_object_name = 'flights'
-	template_name = 'flights/flight_detail.html'
+	context_object_name = 'flight_detail'
+	template_name = 'flightdelays/flight_detail.html'
