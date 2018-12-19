@@ -77,15 +77,15 @@
   {% endif %}
 
 
-  <!-- {% if airport_detail.airline.flight_number %}
+  {% if airport_detail.airport_flights %}
     <div class="row">
       <div class="col-sm-2">
         <p>Longitude</p>
       </div>
       <div class="col-sm-10">
-        <p>{{ airport_detail.airline.flight_number}}</p>
+        <p>{{ airport_detail.airport_flights }}</p>
       </div>
     </div>
-  {% endif %} -->
+  {% endif %}
 
    {% endblock content %}

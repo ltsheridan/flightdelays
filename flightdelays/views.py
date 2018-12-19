@@ -16,7 +16,7 @@ class HomePageView(generic.TemplateView):
 	template_name = 'flightdelays/home.html'
 
 @method_decorator(login_required, name='dispatch')
-class FlightListView(generic.ListView):
+class AirportListView(generic.ListView):
 	model = Airport
 	context_object_name = 'airports'
 	template_name = 'flightdelays/flights.html'
@@ -37,15 +37,19 @@ class AirportDetailView(generic.DetailView):
 	def dispatch(self, *args, **kwargs):
 		return super().dispatch(*args, **kwargs)
 
-# class FlightListView(generic.ListView):
-# 	model = Airport
-# 	context_object_name = 'airports'
-# 	template_name = 'flightdelays/flights.html'
+@method_decorator(login_required, name='dispatch')
+class FlightListView(generic.ListView):
+	model = Flight
+	context_object_name = 'flights'
+	template_name = 'flightdelays/flights.html'
+
+	def dispatch(self, *args, **kwargs):
+		return super().dispatch(*args, **kwargs)
 
 class FlightDetailView(generic.DetailView):
 	model = Flight
 	context_object_name = 'flight_detail'
 	template_name = 'flightdelays/flight_detail.html'
-    #
-	# def get_queryset(self):
-	# 	return Flight.objects.all()
+
+	def get_queryset(self):
+		return Flight.objects.all()

@@ -39,7 +39,8 @@ class Airport(models.Model):
     latitude = models.CharField(max_length=50)
     longitude = models.CharField(max_length=50)
 
-    airline = models.ManyToManyField(Airline, through='Flight')
+    airport_flights = models.ManyToManyField(Airline, through='Flight')
+    # airport_flights=models.OneToMany(Flight)
 
     class Meta:
         managed = False
@@ -77,6 +78,7 @@ class Flight(models.Model):
     arrival_delay = models.CharField(max_length=50)
     diverted = models.IntegerField()
     cancelled = models.IntegerField()
+
 
     class Meta:
         managed = False
