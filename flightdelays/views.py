@@ -19,7 +19,7 @@ class HomePageView(generic.TemplateView):
 class AirportListView(generic.ListView):
 	model = Airport
 	context_object_name = 'airports'
-	template_name = 'flightdelays/flights.html'
+	template_name = 'flightdelays/airports.html'
 	paginate_by = 50
 
 	def dispatch(self, *args, **kwargs):

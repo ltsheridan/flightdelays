@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'flightdelays.apps.FlightdelaysConfig',
     'crispy_forms',
+    'django_filters',
     'social_django'
 ]
 
