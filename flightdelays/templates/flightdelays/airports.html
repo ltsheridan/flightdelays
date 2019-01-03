@@ -21,7 +21,7 @@
   <ul>
     {% for airport in airports %}
 
-    <li><a href="{% url 'flight_detail' airport.pk %}">{{ airport.airport_name | safe }}</a></li>
+    <li><a href="{% url 'airport_detail' airport.pk %}">{{ airport.airport_name | safe }}</a></li>
     {% endfor %}
 
   </ul>
