@@ -4,7 +4,8 @@ from django.views import generic
 from .models import Flight, Airport, Airline, Aircraft
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-
+from django.urls import reverse_lazy
+from django.shortcuts import redirect
 
 def index(request):
    return HttpResponse("Hello, world. You're at the 2015 Flight Delays index.")
@@ -36,3 +37,12 @@ class AirportDetailView(generic.DetailView):
 
 	def dispatch(self, *args, **kwargs):
 		return super().dispatch(*args, **kwargs)
+
+@method_decorator(login_required, name='dispatch')
+class FlightDetailView(generic.DetailView):
+	model = Flight
+	context_object_name = 'flight_detail'
+	template_name = 'flightdelays/flight_detail.html'
+
+	def dispatch(self, *args, **kwargs):
+		return super().dispatch(*args, **kwargs) 

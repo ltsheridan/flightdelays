@@ -39,7 +39,7 @@ class Airport(models.Model):
     latitude = models.CharField(max_length=50)
     longitude = models.CharField(max_length=50)
 
-    airport_flights = models.ManyToManyField(Airline, through='Flight')
+    # airport_flights = models.ManyToManyField(Airline, through='Flight')
     # airport_flights=models.OneToMany(Flight)
 
     class Meta:
@@ -52,6 +52,7 @@ class Airport(models.Model):
     def __str__(self):
         return self.airport_name
 
+
 class Flight(models.Model):
     flight_id = models.AutoField(primary_key=True)
     time_year = models.IntegerField()
@@ -60,7 +61,9 @@ class Flight(models.Model):
     day_of_week = models.IntegerField()
     airline = models.ForeignKey(Airline, models.DO_NOTHING)
     aircraft = models.ForeignKey(Aircraft, models.DO_NOTHING)
-    airport = models.ForeignKey(Airport, models.DO_NOTHING)
+    # airport = models.ForeignKey(Airport, models.DO_NOTHING)
+    origin_airport = models.ForeignKey(Airport, on_delete=models.PROTECT, null=False,  related_name='origin')
+    destination_airport = models.ForeignKey(Airport, on_delete=models.PROTECT, null=False,  related_name='destination')
     flight_number = models.IntegerField()
     scheduled_departure = models.IntegerField()
     departure_time = models.CharField(max_length=50)
@@ -85,3 +88,6 @@ class Flight(models.Model):
         db_table = 'flight'
         verbose_name = 'Flight delay'
         verbose_name_plural = 'Flight delays'
+
+    def get_absolute_url(self):
+        return reverse('flight_detail', args=[self.origin_airport.iata_code])
