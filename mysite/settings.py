@@ -100,7 +100,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'flightdelays',
+        'NAME': 'thanksgiving_flight_delays',
         'USER': 'laurensheridan',
         'OPTIONS': {
             'read_default_file': '/etc/mysql/my.cnf',

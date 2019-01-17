@@ -39,10 +39,20 @@ class AirportDetailView(generic.DetailView):
 		return super().dispatch(*args, **kwargs)
 
 @method_decorator(login_required, name='dispatch')
+class FlightListView(generic.ListView):
+	model = Flight
+	context_object_name = 'flights'
+	template_name = 'flightdelays/flight.html'
+	paginate_by = 50
+
+	def dispatch(self, *args, **kwargs):
+		return super().dispatch(*args, **kwargs)
+
+	def get_queryset(self):
+		return Flight.objects.all().order_by('flight_number')
+
+@method_decorator(login_required, name='dispatch')
 class FlightDetailView(generic.DetailView):
 	model = Flight
 	context_object_name = 'flight_detail'
 	template_name = 'flightdelays/flight_detail.html'
-
-	def dispatch(self, *args, **kwargs):
-		return super().dispatch(*args, **kwargs) 

@@ -33,14 +33,12 @@ class Airport(models.Model):
     airport_id = models.AutoField(primary_key=True)
     iata_code = models.CharField(unique=True, max_length=3)
     airport_name = models.CharField(max_length=255)
-    city = models.CharField(max_length=45)
-    state = models.CharField(max_length=2)
-    country = models.CharField(max_length=3)
+    city = models.ForeignKey('City', on_delete=models.PROTECT, max_length=45)
+    state = models.ForeignKey('State', on_delete=models.PROTECT, max_length=2)
+    country = models.ForeignKey('Country', on_delete=models.PROTECT, max_length=3)
     latitude = models.CharField(max_length=50)
     longitude = models.CharField(max_length=50)
 
-    # airport_flights = models.ManyToManyField(Airline, through='Flight')
-    # airport_flights=models.OneToMany(Flight)
 
     class Meta:
         managed = False
@@ -61,9 +59,8 @@ class Flight(models.Model):
     day_of_week = models.IntegerField()
     airline = models.ForeignKey(Airline, models.DO_NOTHING)
     aircraft = models.ForeignKey(Aircraft, models.DO_NOTHING)
-    # airport = models.ForeignKey(Airport, models.DO_NOTHING)
-    origin_airport = models.ForeignKey(Airport, on_delete=models.PROTECT, null=False,  related_name='origin')
-    destination_airport = models.ForeignKey(Airport, on_delete=models.PROTECT, null=False,  related_name='destination')
+    origin_airport = models.ForeignKey(Airport, on_delete=models.PROTECT, null=False, related_name='origin_airport')
+    destination_airport = models.ForeignKey(Airport, on_delete=models.PROTECT, null=False, related_name='destination_airport')
     flight_number = models.IntegerField()
     scheduled_departure = models.IntegerField()
     departure_time = models.CharField(max_length=50)
@@ -82,7 +79,6 @@ class Flight(models.Model):
     diverted = models.IntegerField()
     cancelled = models.IntegerField()
 
-
     class Meta:
         managed = False
         db_table = 'flight'
@@ -90,4 +86,36 @@ class Flight(models.Model):
         verbose_name_plural = 'Flight delays'
 
     def get_absolute_url(self):
-        return reverse('flight_detail', args=[self.origin_airport.iata_code])
+        return reverse('flight_detail', args=[self.pk])
+
+class State(models.Model):
+    state_id=models.AutoField(primary_key=True)
+    state_name=models.CharField(unique=True, max_length=50)
+    country=models.ForeignKey('Country', on_delete=models.PROTECT)
+
+    class Meta:
+        managed = False
+        db_table = 'state'
+        verbose_name = 'Flight delay'
+        verbose_name_plural = 'Flight delays'
+
+class City(models.Model):
+    city_id=models.AutoField(primary_key=True)
+    city_name=models.CharField(max_length=50)
+    state=models.ForeignKey('State', on_delete=models.PROTECT)
+
+    class Meta:
+        managed = False
+        db_table = 'city'
+        verbose_name = 'Flight delay'
+        verbose_name_plural = 'Flight delays'
+
+class Country(models.Model):
+    country_id=models.AutoField(primary_key=True)
+    country_name=models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'country'
+        verbose_name = 'Flight delay'
+        verbose_name_plural = 'Flight delays'
