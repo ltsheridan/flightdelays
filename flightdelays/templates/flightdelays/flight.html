@@ -7,14 +7,25 @@
   <div class="row">
     <div class="col-sm-11">
       <h2>Flights</h2>
+              <h5>Top 50 flight delays on Thanksgiving</h5>
+      </div>
     </div>
-  </div>
 </header>
 
 {% include 'flightdelays/pagination.html' %}
   {% if flights %}
-  <table class = "table">
 
+  <table class = "table">
+    <th>Flight Delay Info</th>
+    <th>Origin Airport</th>
+    <th>Destination Airport</th>
+    <style>
+  table, tr, td, th {
+    margin: 10px auto;
+    border: 1px solid black;
+    border-top: 5x;
+  }
+  </style>
     {% for flight in flights %}
 
     <tr>
@@ -23,6 +34,7 @@
         {{ flight.origin_airport | safe }}
       </td>
       <td>
+
           {{ flight.destination_airport | safe }}
       </td>
     </tr>

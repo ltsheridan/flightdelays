@@ -2,11 +2,6 @@
 
 
    {% block content %}
-     <!-- <header>
-       <div class="row">
-         <p> I am the flight detail view </p>
-       </div>
-     </header> -->
 
      {% if flight_detail.airline %}
      <div class="row">
@@ -53,5 +48,8 @@
      </div>
      {% endif %}
 
+     {% if user.is_authenticated %}
+       <a class="btn btn-outline-secondary" href="{% url 'flight_update' flight.pk %}">Time Delay Update</a>
+     {% endif %}
 
    {% endblock content %}

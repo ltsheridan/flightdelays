@@ -86,6 +86,9 @@ class Flight(models.Model):
     def __str__(self):
         return self.origin_airport
 
+    def get_absolute_url(self):
+        return reverse('flight_detail', kwargs={'pk': self.pk})
+
 class State(models.Model):
     state_id=models.AutoField(primary_key=True)
     state_name=models.CharField(unique=True, max_length=50)
