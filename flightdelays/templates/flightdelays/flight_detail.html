@@ -2,10 +2,56 @@
 
 
    {% block content %}
-     <header>
+     <!-- <header>
        <div class="row">
          <p> I am the flight detail view </p>
        </div>
-     </header>
+     </header> -->
+
+     {% if flight_detail.airline %}
+     <div class="row">
+      <div class="col-sm-2">
+        <p>Airline</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{flight_detail.airline}}</p>
+      </div>
+     </div>
+     {% endif %}
+
+
+     {% if flight_detail.origin_airport %}
+     <div class="row">
+      <div class="col-sm-2">
+        <p>Origin Airport</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{flight_detail.origin_airport}}</p>
+      </div>
+     </div>
+     {% endif %}
+
+     {% if flight_detail.destination_airport %}
+     <div class="row">
+      <div class="col-sm-2">
+        <p>Destination Airport</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{flight_detail.destination_airport}}</p>
+      </div>
+     </div>
+     {% endif %}
+
+     {% if flight_detail.arrival_delay %}
+     <div class="row">
+      <div class="col-sm-2">
+        <p>Arrival Delay (time)</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{flight_detail.arrival_delay}}</p>
+      </div>
+     </div>
+     {% endif %}
+
 
    {% endblock content %}

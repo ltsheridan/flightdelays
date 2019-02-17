@@ -2,11 +2,6 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-
-{% else %}
- <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
-{% endif %}
-
 <article>
   <header>
   <div class="row">
@@ -18,13 +13,22 @@
 
 {% include 'flightdelays/pagination.html' %}
   {% if flights %}
-  <ul>
+  <table class = "table">
+
     {% for flight in flights %}
 
-    <li><a href="{% url 'flight_detail' flight.pk %}">{{ flight.flight_number | safe }}</a></li>
+    <tr>
+      <td><a href="{% url 'flight_detail' flight.pk %}">Travel Route</a></td>
+      <td>
+        {{ flight.origin_airport | safe }}
+      </td>
+      <td>
+          {{ flight.destination_airport | safe }}
+      </td>
+    </tr>
     {% endfor %}
+    </table>
 
-  </ul>
   {% else %}
 
   <p>No flights are available to view.</p>
@@ -32,5 +36,8 @@
 
   <p>Page count: {{ flights.count }}</p>
 </article>
+{% else %}
+ <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
+{% endif %}
 
 {% endblock content %}}

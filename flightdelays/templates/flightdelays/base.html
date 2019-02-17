@@ -43,11 +43,19 @@
         <a class="nav-link" href="{% url 'flight' %}">Flights</a>
     </li>
   </ul>
+  {% if user.is_authenticated %}
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'login' %}">Login</a>
+      <a class="nav-link" href="{% url 'logout' %}">Logout</a>
     </li>
   </ul>
+  {% else %}
+   <ul class="navbar-nav mr-auto">
+     <li class="nav-item">
+       <a class="nav-link" href="{% url 'login' %}">Login</a>
+     </li>
+   </ul>
+  {% endif %}
       </ul>
     </div>
   </nav>

@@ -18,8 +18,6 @@ class Airline(models.Model):
     iata_code = models.CharField(unique=True, max_length=3)
     airline_name = models.CharField(unique=True, max_length=100)
 
-    # airport = models.ManyToManyField(Airport, through='Flight')
-
     class Meta:
         managed = False
         db_table = 'airline'
@@ -85,8 +83,8 @@ class Flight(models.Model):
         verbose_name = 'Flight delay'
         verbose_name_plural = 'Flight delays'
 
-    def get_absolute_url(self):
-        return reverse('flight_detail', args=[self.pk])
+    def __str__(self):
+        return self.origin_airport
 
 class State(models.Model):
     state_id=models.AutoField(primary_key=True)

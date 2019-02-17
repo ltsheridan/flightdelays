@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
+from django.db.models import Count
 
 def index(request):
    return HttpResponse("Hello, world. You're at the 2015 Flight Delays index.")
@@ -49,7 +50,7 @@ class FlightListView(generic.ListView):
 		return super().dispatch(*args, **kwargs)
 
 	def get_queryset(self):
-		return Flight.objects.all().order_by('flight_number')
+		return Flight.objects.annotate(Count('arrival_delay')).order_by('-arrival_delay__count')[:50]
 
 @method_decorator(login_required, name='dispatch')
 class FlightDetailView(generic.DetailView):
