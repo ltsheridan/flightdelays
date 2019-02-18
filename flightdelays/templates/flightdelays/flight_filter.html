@@ -1,0 +1,31 @@
+{% extends 'flightdelays/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="px-2 py-2" style="border:1px solid #8E8D8A;">
+        <form action="" method="get">
+          {{ filter.form|crispy }}
+          <button type="submit" class="btn btn-outline-success">Filter</button>
+          &nbsp;<a class="btn btn-outline-secondary" href="{% url 'sites' %}">Cancel</a>
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      {% for flight in object_list %}
+        <h4><a href= "{% url 'flight_detail' site.pk %}">{{flight.origin_airport | safe}}</a></h4>
+
+      <!-- {% if site.country_area_names %}
+          {{ site.country_area_names | safe }}
+      {% endif %} -->
+
+    {% empty %}
+    {% endfor %}
+    </div>
+  </div>
+
+
+{% endblock content %}

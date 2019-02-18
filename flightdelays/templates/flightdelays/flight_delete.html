@@ -1,0 +1,18 @@
+{% extends 'flightdelays/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  <header>
+    <h2>Flight Delete</h2>
+  </header>
+
+  <form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete the Flight "{{ flight.arrival_delay }}"?</p>
+    <button type="submit" class="btn btn-outline-danger">Delete</button>
+    <a class="btn btn-outline-secondary" href="{% url 'site_detail' site.pk %}">Cancel</a>
+  </form>
+
+{% endblock content %}

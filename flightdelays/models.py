@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+import django_filters
 
 class Aircraft(models.Model):
     aircraft_id = models.AutoField(primary_key=True)

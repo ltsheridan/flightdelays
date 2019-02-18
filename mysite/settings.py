@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'flightdelays.apps.FlightdelaysConfig',
     'crispy_forms',
     'django_filters',
-    'social_django'
+    'social_django',
+    # 'test_without_migrations'
 ]
 
 MIDDLEWARE = [

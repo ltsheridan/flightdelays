@@ -1,13 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
-from .models import Flight, Airport, Airline, Aircraft
+from .models import Flight, Airport, Airline, Aircraft, State, City, Country
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.db.models import Count
 from .forms import FlightForm
+from django_filters.views import FilterView
+from .filters import FlightFilter
 
 def index(request):
    return HttpResponse("Hello, world. You're at the 2015 Flight Delays index.")
@@ -59,6 +61,27 @@ class FlightDetailView(generic.DetailView):
 	context_object_name = 'flight_detail'
 	template_name = 'flightdelays/flight_detail.html'
 
+@method_decorator(login_required, name='dispatch')
+class FlightCreateView(generic.View):
+	model = Flight
+	form_class = FlightForm
+	success_message = "Flight created successfully"
+	template_name = 'flightdelays/flight_new.html'
+
+	def dispatch(self, *args, **kwargs):
+		return super().dispatch(*args, **kwargs)
+
+	def post(self, request):
+		form = FlightForm(request.POST)
+		if form.is_valid():
+			site = form.save(commit=False)
+			site.save()
+			return HttpResponseRedirect(site.get_absolute_url())
+		# return render(request, 'flightdelays/flight_new.html', {'form': form})
+
+	def get(self, request):
+		form = FlightForm()
+		return render(request, 'flightdelays/flight_new.html', {'form': form})
 
 @method_decorator(login_required, name='dispatch')
 class FlightUpdateView(generic.UpdateView):
@@ -75,3 +98,24 @@ class FlightUpdateView(generic.UpdateView):
 		site = form.save(commit=False)
 		site.save()
 		return HttpResponseRedirect(site.get_absolute_url())
+
+@method_decorator(login_required, name='dispatch')
+class FlightDeleteView(generic.DeleteView):
+	model = Flight
+	success_message = "Flight deleted successfully"
+	success_url = reverse_lazy('flight')
+	context_object_name = 'flight'
+	template_name = 'flightdelays/flight_delete.html'
+
+	def dispatch(self, *args, **kwargs):
+		return super().dispatch(*args, **kwargs)
+
+	def delete(self, request, *args, **kwargs):
+		self.object = self.get_object()
+
+		return HttpResponseRedirect(self.get_success_url())
+
+
+class FlightFilterView(FilterView):
+    filterset_class = FlightFilter
+    template_name = 'flightdelays/flight_filter.html'

@@ -8,7 +8,7 @@
     <h2>Flight Update</h2>
   </header>
 
-  <!-- novalidate attribute required to render validation messages -->
+
   <form method="post" novalidate>
     {% csrf_token %}
 
@@ -18,9 +18,9 @@
       </div>
     </div>
 
-<!-- 
+
     <button type="submit" class="btn btn-outline-success">Update</button>
-    &nbsp;<a class="btn btn-outline-secondary" href="{% url 'flight_detail' flight.pk %}">Cancel</a> -->
+    &nbsp;<a class="btn btn-outline-secondary" href="{% url 'flight_detail' flight.pk %}">Cancel</a>
 
   </form>
 
