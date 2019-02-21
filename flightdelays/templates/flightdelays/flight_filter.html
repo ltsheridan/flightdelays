@@ -10,17 +10,12 @@
         <form action="" method="get">
           {{ filter.form|crispy }}
           <button type="submit" class="btn btn-outline-success">Filter</button>
-          &nbsp;<a class="btn btn-outline-secondary" href="{% url 'sites' %}">Cancel</a>
         </form>
       </div>
     </div>
     <div class="col-sm-9">
       {% for flight in object_list %}
-        <h4><a href= "{% url 'flight_detail' site.pk %}">{{flight.origin_airport | safe}}</a></h4>
-
-      <!-- {% if site.country_area_names %}
-          {{ site.country_area_names | safe }}
-      {% endif %} -->
+        <h4><a href= "{% url 'flight_detail' flight.pk %}">{{flight.origin_airport | safe}}</a></h4>
 
     {% empty %}
     {% endfor %}

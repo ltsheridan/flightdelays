@@ -76,8 +76,8 @@ class FlightCreateView(generic.View):
 		if form.is_valid():
 			site = form.save(commit=False)
 			site.save()
-			return HttpResponseRedirect(site.get_absolute_url())
-		# return render(request, 'flightdelays/flight_new.html', {'form': form})
+			return redirect(site)
+		return render(request, 'flightdelays/flight_new.html', {'form': form})
 
 	def get(self, request):
 		form = FlightForm()
@@ -117,5 +117,5 @@ class FlightDeleteView(generic.DeleteView):
 
 
 class FlightFilterView(FilterView):
-    filterset_class = FlightFilter
-    template_name = 'flightdelays/flight_filter.html'
+	filterset_class = FlightFilter
+	template_name = 'flightdelays/flight_filter.html'
