@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-sm-11">
       <h2>Flights</h2>
-              <h5>Top 50 flight delays on Thanksgiving</h5>
+              <h5>Top 50 flight delays on Thanksgiving 2015 (by longest delay)</h5>
       </div>
     </div>
 </header>
@@ -19,6 +19,7 @@
     <th>Flight Delay Info</th>
     <th>Origin Airport</th>
     <th>Destination Airport</th>
+    <th>Delay in minutes</th>
     <style>
   table, tr, td, th {
     margin: 10px auto;
@@ -36,6 +37,10 @@
       <td>
 
           {{ flight.destination_airport | safe }}
+      </td>
+      <td>
+
+          {{ flight.arrival_delay | safe }}
       </td>
     </tr>
     {% endfor %}

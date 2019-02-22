@@ -53,7 +53,7 @@ class FlightListView(generic.ListView):
 		return super().dispatch(*args, **kwargs)
 
 	def get_queryset(self):
-		return Flight.objects.annotate(Count('arrival_delay')).order_by('-arrival_delay__count')[:50]
+		return Flight.objects.annotate(Count('arrival_delay')).order_by('-arrival_delay')[:50]
 
 @method_decorator(login_required, name='dispatch')
 class FlightDetailView(generic.DetailView):
