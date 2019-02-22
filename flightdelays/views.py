@@ -112,7 +112,7 @@ class FlightDeleteView(generic.DeleteView):
 
 	def delete(self, request, *args, **kwargs):
 		self.object = self.get_object()
-
+		self.object.delete()
 		return HttpResponseRedirect(self.get_success_url())
 
 
