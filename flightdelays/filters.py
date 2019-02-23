@@ -10,7 +10,6 @@ class FlightFilter(django_filters.FilterSet):
 		lookup_expr='exact'
 	)
 
-
 	class Meta:
 		model = Flight
 		# form = SearchForm
