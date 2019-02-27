@@ -13,4 +13,40 @@ Specifically, this project has data from the Thanksgiving holiday November 25-27
 <img width="528" alt="screen shot 2019-02-26 at 11 15 22 pm" src="https://user-images.githubusercontent.com/31678807/53465581-7e103f00-3a1c-11e9-9049-a970b0cedae9.png">
 
 ## Package Dependencies
-Will add later
+------------------------------ ----------
+certifi                        2018.11.29
+chardet                        3.0.4     
+coreapi                        2.3.3     
+coreschema                     0.0.4     
+defusedxml                     0.5.0     
+Django                         2.1.3     
+django-allauth                 0.38.0    
+django-cors-headers            2.4.0     
+django-crispy-forms            1.7.2     
+django-filter                  2.0.0     
+django-rest-auth               0.9.3     
+django-rest-swagger            2.2.0     
+django-test-without-migrations 0.6       
+djangorestframework            3.9.1     
+idna                           2.8       
+itypes                         1.1.0     
+Jinja2                         2.10      
+MarkupSafe                     1.1.1     
+mysqlclient                    1.3.14    
+oauthlib                       2.1.0     
+openapi-codec                  1.3.2     
+pip                            19.0.3    
+PyJWT                          1.7.1     
+python3-openid                 3.1.0     
+pytz                           2018.7    
+PyYAML                         3.13      
+requests                       2.21.0    
+requests-oauthlib              1.0.0     
+setuptools                     40.6.2    
+simplejson                     3.16.0    
+six                            1.12.0    
+social-auth-app-django         3.1.0     
+social-auth-core               2.0.0     
+uritemplate                    3.0.0     
+urllib3                        1.24.1    
+wheel                          0.32.3
