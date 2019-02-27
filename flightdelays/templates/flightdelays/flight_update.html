@@ -18,6 +18,30 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-6">
+        {{ form.origin_airport|as_crispy_field }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        {{ form.destination_airport|as_crispy_field }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        {{ form.airline|as_crispy_field }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        {{ form.aircraft|as_crispy_field }}
+      </div>
+    </div>
+
         <button type="submit" class="btn btn-outline-success">Update</button>
         &nbsp;<a class="btn btn-outline-secondary" href="{% url 'flight_detail' flight.pk %}">Cancel</a>
 

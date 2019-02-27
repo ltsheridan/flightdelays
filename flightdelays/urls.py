@@ -14,4 +14,5 @@ urlpatterns = [
    path('flights/new/', views.FlightCreateView.as_view(), name='flight_new'),
    path('flights/<int:pk>/delete/', views.FlightDeleteView.as_view(), name='flight_delete'),
    path('search/', views.FlightFilterView.as_view(),name='search'),
+   path('flightdelays/api/rest-auth/', include('rest_auth.urls'))
 ]

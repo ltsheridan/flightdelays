@@ -52,31 +52,12 @@ class Airport(models.Model):
 
 class Flight(models.Model):
     flight_id = models.AutoField(primary_key=True)
-    time_year = models.IntegerField()
-    time_month = models.IntegerField()
-    time_day = models.IntegerField()
-    day_of_week = models.IntegerField()
     airline = models.ForeignKey(Airline, models.DO_NOTHING)
     aircraft = models.ForeignKey(Aircraft, models.DO_NOTHING)
     origin_airport = models.ForeignKey(Airport, on_delete=models.PROTECT, null=False, related_name='origin_airport')
     destination_airport = models.ForeignKey(Airport, on_delete=models.PROTECT, null=False, related_name='destination_airport')
-    flight_number = models.IntegerField()
-    scheduled_departure = models.IntegerField()
-    departure_time = models.IntegerField()
-    departure_delay = models.IntegerField()
-    taxi_out = models.IntegerField()
-    wheels_off = models.IntegerField()
-    scheduled_time = models.IntegerField()
-    elapsed_time = models.IntegerField()
-    air_time = models.IntegerField()
-    distance = models.IntegerField()
-    wheels_on = models.IntegerField()
-    taxi_in = models.IntegerField()
-    scheduled_arrival = models.IntegerField()
-    arrival_time = models.IntegerField()
     arrival_delay = models.IntegerField()
-    diverted = models.IntegerField()
-    cancelled = models.IntegerField()
+
 
     class Meta:
         managed = False

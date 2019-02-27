@@ -17,7 +17,9 @@
       {% for flight in object_list %}
         <h4><a href= "{% url 'flight_detail' flight.pk %}">{{flight.origin_airport | safe}}</a></h4>
 
+
     {% empty %}
+      Select option of airline to see the list of origin airports with the longest delays and then click "filter".
     {% endfor %}
     </div>
   </div>

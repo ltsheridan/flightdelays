@@ -12,7 +12,7 @@
     {% csrf_token %}
     <p>Are you sure you want to delete the Flight "{{ flight.arrival_delay }}"?</p>
     <button type="submit" class="btn btn-outline-danger">Delete</button>
-    <a class="btn btn-outline-secondary" href="{% url 'flight_detail' flight.pk %}">cancel</a>
+    <a class="btn btn-outline-secondary" href="{% url 'flight_detail' flight.pk %}">Cancel</a>
   </form>
 
 {% endblock content %}
