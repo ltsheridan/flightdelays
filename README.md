@@ -10,7 +10,7 @@ Specifically, this project has data from the Thanksgiving holiday November 25-27
 [Flight delays dataset](https://www.kaggle.com/usdot/flight-delays/home)
 
 ## Data Model
-<img width="742" alt="screen shot 2018-12-14 at 11 27 42 am" src="https://user-images.githubusercontent.com/31678807/50014979-64219d00-ff93-11e8-8cf9-5abe90daa6bb.png">
+<img width="528" alt="screen shot 2019-02-26 at 11 15 22 pm" src="https://user-images.githubusercontent.com/31678807/53465581-7e103f00-3a1c-11e9-9049-a970b0cedae9.png">
 
 ## Package Dependencies
 Will add later
