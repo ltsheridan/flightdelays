@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.views import generic
 from .models import Flight, Airport, Airline, Aircraft, State, City, Country
 from django.contrib.auth.decorators import login_required
