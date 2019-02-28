@@ -28,11 +28,14 @@ class AirportListView(generic.ListView):
 	template_name = 'flightdelays/airports.html'
 	paginate_by = 50
 
+
 	def dispatch(self, *args, **kwargs):
 		return super().dispatch(*args, **kwargs)
 
+
 	def get_queryset(self):
 		return Airport.objects.all().order_by('airport_name')
+
 
 @method_decorator(login_required, name='dispatch')
 class AirportDetailView(generic.DetailView):
@@ -40,8 +43,10 @@ class AirportDetailView(generic.DetailView):
 	context_object_name = 'airport_detail'
 	template_name = 'flightdelays/airport_detail.html'
 
+
 	def dispatch(self, *args, **kwargs):
 		return super().dispatch(*args, **kwargs)
+
 
 @method_decorator(login_required, name='dispatch')
 class FlightListView(generic.ListView):
@@ -50,11 +55,14 @@ class FlightListView(generic.ListView):
 	template_name = 'flightdelays/flight.html'
 	paginate_by = 50
 
+
 	def dispatch(self, *args, **kwargs):
 		return super().dispatch(*args, **kwargs)
 
+
 	def get_queryset(self):
 		return Flight.objects.annotate(Count('arrival_delay')).order_by('-arrival_delay')[:50]
+
 
 @method_decorator(login_required, name='dispatch')
 class FlightDetailView(generic.DetailView):
@@ -69,8 +77,10 @@ class FlightCreateView(generic.View):
 	success_message = "Flight created successfully"
 	template_name = 'flightdelays/flight_new.html'
 
+
 	def dispatch(self, *args, **kwargs):
 		return super().dispatch(*args, **kwargs)
+
 
 	def post(self, request):
 		form = FlightForm(request.POST)
@@ -80,9 +90,11 @@ class FlightCreateView(generic.View):
 			return redirect(site)
 		return render(request, 'flightdelays/flight_new.html', {'form': form})
 
+
 	def get(self, request):
 		form = FlightForm()
 		return render(request, 'flightdelays/flight_new.html', {'form': form})
+
 
 @method_decorator(login_required, name='dispatch')
 class FlightUpdateView(generic.UpdateView):
@@ -92,13 +104,16 @@ class FlightUpdateView(generic.UpdateView):
 	success_message = "Flight updated successfully"
 	template_name = 'flightdelays/flight_update.html'
 
+
 	def dispatch(self, *args, **kwargs):
 		return super().dispatch(*args, **kwargs)
+
 
 	def form_valid(self, form):
 		site = form.save(commit=False)
 		site.save()
 		return HttpResponseRedirect(site.get_absolute_url())
+
 
 @method_decorator(login_required, name='dispatch')
 class FlightDeleteView(generic.DeleteView):
@@ -108,8 +123,10 @@ class FlightDeleteView(generic.DeleteView):
 	context_object_name = 'flight'
 	template_name = 'flightdelays/flight_delete.html'
 
+
 	def dispatch(self, *args, **kwargs):
 		return super().dispatch(*args, **kwargs)
+
 
 	def delete(self, request, *args, **kwargs):
 		self.object = self.get_object()
