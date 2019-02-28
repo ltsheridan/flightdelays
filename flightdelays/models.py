@@ -10,6 +10,7 @@ class Aircraft(models.Model):
         managed = False
         db_table = 'aircraft'
 
+
     def __str__(self):
         return self.tail_number
 
@@ -25,8 +26,10 @@ class Airline(models.Model):
         verbose_name = 'Flight delay'
         verbose_name_plural = 'Flight delays'
 
+
     def __str__(self):
         return self.airline_name
+
 
 class Airport(models.Model):
     airport_id = models.AutoField(primary_key=True)
@@ -65,11 +68,14 @@ class Flight(models.Model):
         verbose_name = 'Flight delay'
         verbose_name_plural = 'Flight delays'
 
+
     def __str__(self):
         return self.origin_airport
 
+
     def get_absolute_url(self):
         return reverse('flight_detail', kwargs={'pk': self.pk})
+
 
 class State(models.Model):
     state_id=models.AutoField(primary_key=True)
